@@ -1,14 +1,39 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
+import signOut from "../../../assets/logout.png";
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    console.log(user);
 
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error));
+    }
 
 
     const navOptions = <>
-        <li className=""><Link to='/'>Home</Link></li>
-        <li className=""><Link to='/surveys'>Surveys</Link></li>
-        <li className=""><Link to='/login'>Login</Link></li>
-        <li className="font-semibold rounded-md text-black bg-yellow-300 border-0 transition-all ease-in-out"><Link to='/becomePro'>Become a <span className="font-bold">PRO</span></Link></li>
+
+        <NavLink to="/"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "font-bold border-b-4 pb-1 transition-all ease-in-out border-yellow-300" : "font-semibold"
+            }>
+            Home
+        </NavLink>
+        <NavLink to="/surveys"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "font-bold border-b-4 pb-1 transition-all ease-in-out border-yellow-300" : "font-semibold"
+            }>
+            Surveys
+        </NavLink>
+        <NavLink to="/becomePro"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "font-bold border-b-4 pb-1 transition-all ease-in-out border-yellow-300" : "font-semibold rounded-md text-black bg-yellow-300 border-0 transition-all ease-in-out px-2 py-1"
+            }>
+            Become a <span className="font-bold">PRO</span>
+        </NavLink>
 
     </>
     return (
@@ -26,11 +51,29 @@ const Navbar = () => {
                     <a className=" normal-case text-xl font-bold text-yellow-400">Survey <span className="text-black">Master</span> </a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-
-                </div>
-                <div className="navbar-end hidden lg:flex">
                     <ul className="menu menu-sm menu-horizontal gap-6 text-sm px-1 text-black font-semibold items-center">
                         {navOptions}
+                    </ul>
+                </div>
+                <div className="navbar-end hidden lg:flex">
+                    <ul className="menu-horizontal gap-6 text-sm px-1 text-black font-semibold items-center">
+                        <li className="">
+                            {
+                                user ? <div className="flex items-center space-x-4">
+                                    <span className="ml-4">{user?.displayName}</span>
+                                    <div className="avatar">
+                                        <div className="w-8 rounded">
+                                            <img src={user?.photoURL} alt="Tailwind-CSS-Avatar-component" />
+                                        </div>
+                                    </div>
+                                    <img onClick={handleLogOut} className="w-5 hover:w-[22px] transition-all ease-in-out cursor-pointer" src={signOut} alt="" />
+                                </div> : <>
+                                    <li className="hover:text-yellow-300 hover:bg-gray-800 font-bold btn btn-sm bg-yellow-300">
+                                        <Link to='/login'>Login</Link>
+                                    </li>
+                                </>
+                            }
+                        </li>
                     </ul>
                 </div>
             </div>

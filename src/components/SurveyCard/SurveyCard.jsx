@@ -1,25 +1,18 @@
-import { useEffect } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Link } from "react-router-dom";
 
 const SurveyCard = ({ item }) => {
-    const { title, description, category, totalVotes } = item;
+    const { title, description, category, totalVotes, _id } = item;
     const axiosPublic = useAxiosPublic();
 
-    useEffect(() => {
-        const fetchSurveyData = async () => {
-            try {
-                const response = await axiosPublic.get('/surveys');
-                console.log(response.data);
-            } catch (error) {
-                console.error("Error fetching survey data:", error);
-            }
-        };
-
-        fetchSurveyData();
-    }, [axiosPublic]);
-
-    const handleDetails = () => {
-        // Your logic for adding to cart
+    const handleDetails = async () => {
+        try {
+            // Fetch the details of the specific survey
+            const response = await axiosPublic.get(`/surveys/${_id}`);
+            console.log(response.data);
+        } catch (error) {
+            console.error("Error fetching survey data:", error);
+        }
     };
 
     return (
@@ -34,7 +27,9 @@ const SurveyCard = ({ item }) => {
                     <div className="px-2 text-sm border-0 font-semibold">Vote Count: <span className="text-lg font-bold text-yellow-400">{totalVotes}</span></div>
                 </div>
                 <div className="card-actions justify-end">
-                    <button onClick={handleDetails} className="btn btn-sm btn-outline mt-10  flex mx-auto">Details</button>
+                    <Link to={`/surveyDetails/${_id}`}>
+                        <button onClick={handleDetails} className="btn btn-sm btn-outline mt-10  flex mx-auto">Details</button>
+                    </Link>
                 </div>
             </div>
         </div>
