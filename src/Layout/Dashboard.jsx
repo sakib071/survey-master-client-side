@@ -50,7 +50,7 @@ const Dashboard = () => {
                                         User Home</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/history">
+                                    <NavLink to="/dashboard/surveyList">
                                         <FaCalendar className="text-white"></FaCalendar>
                                         Vote History</NavLink>
                                 </li>

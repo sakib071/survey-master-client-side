@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 
 const SurveyDetails = () => {
@@ -10,15 +10,32 @@ const SurveyDetails = () => {
     // const { _id } = useParams();
     const navigate = useNavigate();
     const data = useLoaderData();
-    const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('Appropriate');
+    const [report, setReport] = useState(false);
+    const [reportStatus, setReportStatus] = useState('Appropriate');
+
+
+
+    const { title, description, options, category, timestamp } = data;
+    // console.log(title);
 
     const handleCategoryChange = (event) => {
         setSelectedCategory(event.target.value);
     }
-    const { title, description, options, category, timestamp } = data;
-    // console.log(title);
+    const handleReportChange = () => {
+        setReport((prevReport) => !prevReport);
 
-    const handleVote = event => {
+        if (report === true) {
+            setReportStatus('Appropriate');
+        }
+        else {
+            setReportStatus('Inappropriate');
+        }
+    };
+
+    console.log(report, reportStatus);
+
+    const handleVote = (event) => {
         event.preventDefault();
 
         const form = event.target;
@@ -29,6 +46,8 @@ const SurveyDetails = () => {
         const category = data.category;
         const comment = form.comment.value;
         const option = selectedCategory;
+        const likeStatus = form.querySelector('input[name="radio-1"]:checked')?.value;
+        const report = reportStatus;
 
         const addVote = {
             email,
@@ -37,7 +56,9 @@ const SurveyDetails = () => {
             description,
             category,
             option,
-            comment
+            comment,
+            likeStatus,
+            report
         };
         console.log(addVote);
 
@@ -57,7 +78,7 @@ const SurveyDetails = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    navigate(location?.state ? location?.state : '/surveyList');
+                    navigate(location?.state ? location?.state : '/dashboard/surveyList');
                 }
             })
             .catch(err => {
@@ -76,7 +97,6 @@ const SurveyDetails = () => {
                 <h3 className="text-3xl font-bold m-5">Survey Details</h3>
                 <form onSubmit={handleVote} className="card-body">
                     <div className="grid grid-cols-2 gap-5 text-left mx-auto justify-center">
-
                         <div className="">
                             <label className="label label-text p-0" >Survey Title</label>
                             <p name='title' value={title} className="font-semibold">{title}</p>
@@ -96,7 +116,6 @@ const SurveyDetails = () => {
                             <label className="label label-text p-0" >Survey Category</label>
                             <p className="font-bold text-yellow-400">{category}</p>
                         </div>
-
                         <div>
                             <label className="label label-text p-0 mb-1" >Select an option</label>
                             <div className="form-control">
@@ -111,8 +130,7 @@ const SurveyDetails = () => {
                                         options.map((optValue, index) => (
                                             <option key={index}
                                                 value={optValue}
-                                                name="radio-1"
-                                                className="radio radio-sm" >{optValue}</option>
+                                                className="" >{optValue}</option>
                                         ))
                                     }
                                 </select>
@@ -129,11 +147,43 @@ const SurveyDetails = () => {
                         <input type="text" placeholder="Comment" name="comment" className="input input-sm input-bordered w-full max-w-full" />
                     </div>
 
-                    {/* <div className="divider"></div> */}
+                    <div className="mt-4 flex justify-between items-center">
+                        <div className="flex gap-5 items-center">
+                            <div className="flex gap-1 items-center">
+                                <input type="radio" name="radio-1" className="radio radio-sm" value='like' />
+                                <label >Like</label>
+                            </div>
+                            <div className="flex gap-1 items-center">
+                                <input type="radio" name="radio-1" className="radio radio-sm" value='dislike' />
+                                <label >Dislike</label>
+                            </div>
+                        </div>
+                        <div className="form-control">
+                            <label className="label cursor-pointer gap-3">
+                                <span className="label-text">Report</span>
+                                <input
+                                    type="checkbox"
+                                    name="report" // Add name attribute
+                                    checked={report}
+                                    onChange={handleReportChange}
+                                    className="checkbox checkbox-xs rounded-sm"
+                                />
+                            </label>
+                        </div>
 
-                    <div className="form-control">
-                        <input type="submit" className="btn btn-sm w-1/2 mx-auto mt-10 first-letter: bg-yellow-300 text-black uppercase hover:bg-yellow-400 hover-bg-blue-600" value="Vote" />
                     </div>
+
+                    {
+                        user ?
+                            <div className="form-control">
+                                <button type="submit" className="btn btn-sm w-1/2 mx-auto mt-10 first-letter: bg-yellow-300 text-black uppercase hover:bg-yellow-400 hover-bg-blue-600">Vote</button>
+                                <input />
+                            </div>
+                            : <div className="form-control">
+                                <button type="submit" className="btn btn-sm w-1/2 mx-auto mt-10 first-letter: bg-yellow-300 text-black uppercase hover:bg-yellow-400 hover-bg-blue-600" disabled>Vote</button>
+                            </div>
+                    }
+
                 </form>
             </div >
         </div>

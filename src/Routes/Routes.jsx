@@ -44,10 +44,6 @@ export const router = createBrowserRouter([
                 element: <SignUp></SignUp>
             },
             {
-                path: '/surveyList',
-                element: <SurveyList></SurveyList>
-            },
-            {
                 path: '/becomePro',
                 element: <BecomePro></BecomePro>
             }
@@ -59,7 +55,7 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
-                path: 'addItems',
+                path: 'addVote',
                 element: <AdminRoute><AddSurvey></AddSurvey></AdminRoute>
             },
             {
@@ -69,7 +65,11 @@ export const router = createBrowserRouter([
             {
                 path: 'userHome',
                 element: <UserHome></UserHome>
-            }
+            },
+            {
+                path: 'surveyList',
+                element: <SurveyList></SurveyList>
+            },
         ]
     },
     {
