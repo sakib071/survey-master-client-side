@@ -31,10 +31,10 @@ const Login = () => {
     return (
         <div className="pt-32 min-h-screen">
             <div className="hero-content flex-col">
-                <div className="text-center lg:text-left mb-10">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
+                <div className="text-center lg:text-left">
+                    <h1 className="text-3xl font-bold">Login now!</h1>
                 </div>
-                <div className="card shrink-0 w-full max-w-sm shadow-xl bg-base-100">
+                <div className="card shrink-0 w-full max-w-sm">
                     <form onSubmit={handleLogin} className="card-body">
                         <div className="form-control">
                             <label className="label">

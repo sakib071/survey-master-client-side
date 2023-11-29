@@ -4,10 +4,17 @@ import {
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
-import SignUp from "../SignUp/SignUp";
+import SignUp from "../Pages/SignUp/SignUp";
 import Surveys from "../Pages/Survey/Surveys";
 import SurveyDetails from "../Pages/Survey/SurveyDetails";
 import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
+import SurveyList from "../Pages/Survey/SurveyList";
+import BecomePro from "../Pages/BecomePro/BecomePro";
+import Dashboard from "../Layout/Dashboard";
+import AddSurvey from "../Pages/Dashboard/AddSurvey/AddSUrvey";
+import Payment from "../Pages/BecomePro/Payment";
+import PrivateRoute from "../providers/PrivateRoute";
+import AdminRoute from "../providers/AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -20,7 +27,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/surveys',
-                element: <Surveys></Surveys>
+                element: <PrivateRoute><Surveys></Surveys></PrivateRoute>
             },
             {
                 path: '/surveyDetails/:_id',
@@ -34,6 +41,29 @@ export const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/surveyList',
+                element: <SurveyList></SurveyList>
+            },
+            {
+                path: '/becomePro',
+                element: <BecomePro></BecomePro>
+            }
+        ]
+    },
+    {
+
+        path: 'dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children: [
+            {
+                path: 'addItems',
+                element: <AdminRoute><AddSurvey></AddSurvey></AdminRoute>
+            },
+            {
+                path: 'payment',
+                element: <Payment></Payment>
             }
         ]
     },

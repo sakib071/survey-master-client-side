@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import signOut from "../../../assets/logout.png";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [isAdmin] = useAdmin();
     console.log(user);
 
     const handleLogOut = () => {
@@ -34,6 +36,12 @@ const Navbar = () => {
             }>
             Become a <span className="font-bold">PRO</span>
         </NavLink>
+        {
+            user && isAdmin && <li className=""><NavLink to='/dashboard/adminHome'>Dashboard</NavLink></li>
+        }
+        {
+            user && !isAdmin && <span className="font-semibold text-black hover:text-yellow-500 transition-all ease-in-out"><NavLink to='/dashboard/userHome'>Dashboard</NavLink></span>
+        }
 
     </>
     return (
