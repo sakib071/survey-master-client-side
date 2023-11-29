@@ -1,6 +1,5 @@
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
 import useVote from "../../hooks/useVote";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
@@ -32,63 +31,49 @@ const SurveyList = () => {
                         timer: 1500
                     });
                 }
-
-
             }
         });
     }
 
     return (
-        <div>
+        <div className="min-h-screen pt-28 mb-5">
             <div>
                 <div className="overflow-x-auto">
-                    <table className="table w-full">
+                    <table className="table mx-auto text-center">
                         {/* head */}
                         <thead>
                             <tr>
                                 <th>
                                     #
                                 </th>
-                                <th>Image</th>
-                                <th>Item Name</th>
-                                <th>Price</th>
-                                <th>Update</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Comment</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                vote.map((item, index) => <tr key={item._id}>
+                                vote.map((vote, index) => <tr key={vote._id}>
                                     <td>
                                         {index + 1}
                                     </td>
                                     <td>
-                                        <div className="flex items-center gap-3">
-                                            <div className="avatar">
-                                                <div className="mask mask-squircle w-12 h-12">
-                                                    <img src={item.image} alt="Avatar Tailwind CSS Component" />
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {vote.title}
                                     </td>
-                                    <td>
-                                        {item.name}
-                                    </td>
-                                    <td className="text-right">${item.price}</td>
-                                    <td>
-                                        <Link to={`/dashboard/updateItem/${item._id}`}>
-                                            <button
-                                                className="btn btn-ghost btn-lg bg-orange-500">
-                                                <FaEdit className="text-white 
-                                        "></FaEdit>
-                                            </button>
-                                        </Link>
+                                    <td className="">{vote.category}</td>
+                                    <td className="">{vote.description}</td>
+                                    <td className="">
+                                        {vote.comment ?
+                                            vote.comment : 'No comment'
+                                        }
                                     </td>
                                     <td>
                                         <button
-                                            onClick={() => handleDeleteItem(item)}
-                                            className="btn btn-ghost btn-lg">
-                                            <FaTrashAlt className="text-red-600"></FaTrashAlt>
+                                            onClick={() => handleDeleteItem(vote)}
+                                            className="btn btn-error btn-md">
+                                            <FaTrashAlt className="text-white"></FaTrashAlt>
                                         </button>
                                     </td>
                                 </tr>)

@@ -15,6 +15,7 @@ import AddSurvey from "../Pages/Dashboard/AddSurvey/AddSUrvey";
 import Payment from "../Pages/BecomePro/Payment";
 import PrivateRoute from "../providers/PrivateRoute";
 import AdminRoute from "../providers/AdminRoute";
+import UserHome from "../Pages/Dashboard/UserHome/UserHome";
 
 export const router = createBrowserRouter([
     {
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
             {
                 path: 'payment',
                 element: <Payment></Payment>
+            },
+            {
+                path: 'userHome',
+                element: <UserHome></UserHome>
             }
         ]
     },

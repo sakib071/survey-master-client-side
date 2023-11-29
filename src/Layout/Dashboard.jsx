@@ -1,45 +1,44 @@
-import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
+import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import { RiSurveyFill } from "react-icons/ri";
 import useCart from "../hooks/useCart";
 import useAdmin from "../hooks/useAdmin";
 
 
 const Dashboard = () => {
     const [cart] = useCart();
-
-    // TODO: get isAdmin value from the database
     const [isAdmin] = useAdmin();
 
     return (
         <div className="flex">
             {/* dashboard side bar */}
-            <div className="w-64 min-h-screen bg-[#D1A054] text-white pt-10">
+            <div className="w-64 min-h-screen bg-gray-800 text-yellow-400 pt-10">
                 <ul className="menu p-4">
                     {
                         isAdmin ? <>
                             <li>
                                 <NavLink to="/dashboard/adminHome">
-                                    <FaHome></FaHome>
+                                    <FaHome className="text-white"></FaHome>
                                     Admin Home</NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/addItems">
-                                    <FaUtensils></FaUtensils>
+                                    <FaUtensils className="text-white"></FaUtensils>
                                     Add Items</NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/manageItems">
-                                    <FaList></FaList>
+                                    <FaList className="text-white"></FaList>
                                     Manage Items</NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/bookings">
-                                    <FaBook></FaBook>
+                                    <FaBook className="text-white"></FaBook>
                                     Manage Bookings</NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/users">
-                                    <FaUsers></FaUsers>
+                                    <FaUsers className="text-white"></FaUsers>
                                     All Users</NavLink>
                             </li>
                         </>
@@ -47,28 +46,23 @@ const Dashboard = () => {
                             <>
                                 <li>
                                     <NavLink to="/dashboard/userHome">
-                                        <FaHome></FaHome>
+                                        <FaHome className="text-white"></FaHome>
                                         User Home</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/history">
-                                        <FaCalendar></FaCalendar>
-                                        Not History</NavLink>
+                                        <FaCalendar className="text-white"></FaCalendar>
+                                        Vote History</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/cart">
-                                        <FaShoppingCart></FaShoppingCart>
-                                        My Cart ({cart.length})</NavLink>
+                                        <FaShoppingCart className="text-white"></FaShoppingCart>
+                                        My votes ({cart.length})</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/review">
-                                        <FaAd></FaAd>
+                                        <FaAd className="text-white"></FaAd>
                                         Add a Review</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/dashboard/paymentHistory">
-                                        <FaList></FaList>
-                                        Real Payment History</NavLink>
                                 </li>
                             </>
                     }
@@ -76,17 +70,17 @@ const Dashboard = () => {
                     <div className="divider"></div>
                     <li>
                         <NavLink to="/">
-                            <FaHome></FaHome>
+                            <FaHome className="text-white"></FaHome>
                             Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/order/salad">
-                            <FaSearch></FaSearch>
-                            Menu</NavLink>
+                        <NavLink to="/surveys">
+                            <RiSurveyFill className="text-white" />
+                            Surveys</NavLink>
                     </li>
                     <li>
                         <NavLink to="/order/contact">
-                            <FaEnvelope></FaEnvelope>
+                            <FaEnvelope className="text-white"></FaEnvelope>
                             Contact</NavLink>
                     </li>
                 </ul>

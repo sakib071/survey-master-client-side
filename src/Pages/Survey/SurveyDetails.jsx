@@ -21,12 +21,13 @@ const SurveyDetails = () => {
     const handleVote = event => {
         event.preventDefault();
 
-        // const form = event.target;
+        const form = event.target;
         const email = user?.email;
         const title = data.title;
         const description = data.description;
         const deadline = data.timestamp;
         const category = data.category;
+        const comment = form.comment.value;
         const option = selectedCategory;
 
         const addVote = {
@@ -36,6 +37,7 @@ const SurveyDetails = () => {
             description,
             category,
             option,
+            comment
         };
         console.log(addVote);
 
