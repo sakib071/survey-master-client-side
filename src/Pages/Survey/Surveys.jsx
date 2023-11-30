@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import SurveyCard from "../../components/SurveyCard/SurveyCard";
 
 const Surveys = () => {
-    const [items, setItems] = useState([]);
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:5000/surveys')
             .then((response) => response.json())
-            .then((data) => setItems(data))
+            .then((data) => setData(data))
             .catch((error) => console.error("Error fetching survey data:", error));
     }, []);
 
@@ -16,10 +16,10 @@ const Surveys = () => {
             <h2 className="text-3xl font-bold uppercase text-center mb-10 border-b-4 pb-1 border-yellow-300 w-48 mx-auto">All surveys</h2>
             <div className="grid grid-cols-4 gap-5">
                 {
-                    items.map((item) => (
+                    data.map((data) => (
                         <SurveyCard
-                            key={item._id}
-                            item={item}
+                            key={data._id}
+                            data={data}
                         ></SurveyCard>
                     ))
                 }

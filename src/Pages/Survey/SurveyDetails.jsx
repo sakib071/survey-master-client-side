@@ -10,13 +10,13 @@ const SurveyDetails = () => {
     // const { _id } = useParams();
     const navigate = useNavigate();
     const data = useLoaderData();
-    const [selectedCategory, setSelectedCategory] = useState('Appropriate');
+    const [selectedCategory, setSelectedCategory] = useState('Excellent');
     const [report, setReport] = useState(false);
     const [reportStatus, setReportStatus] = useState('Appropriate');
 
 
 
-    const { title, description, options, category, timestamp } = data;
+    const { title, description, options, category, surveyDeadline } = data;
     // console.log(title);
 
     const handleCategoryChange = (event) => {
@@ -42,7 +42,7 @@ const SurveyDetails = () => {
         const email = user?.email;
         const title = data.title;
         const description = data.description;
-        const deadline = data.timestamp;
+        const deadline = data.surveyDeadline;
         const category = data.category;
         const comment = form.comment.value;
         const option = selectedCategory;
@@ -109,7 +109,7 @@ const SurveyDetails = () => {
 
                         <div className="">
                             <label className="label label-text p-0" >Deadline</label>
-                            <p className="font-semibold">{timestamp}</p>
+                            <p className="font-semibold">{surveyDeadline}</p>
                         </div>
 
                         <div className="">

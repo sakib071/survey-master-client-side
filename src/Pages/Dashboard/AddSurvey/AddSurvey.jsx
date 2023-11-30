@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { FaUtensils } from "react-icons/fa";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
@@ -47,12 +46,23 @@ const AddSurvey = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-control w-full my-6">
                         <label className="label">
-                            <span className="label-text">Recipe Name*</span>
+                            <span className="label-text">Survey Title</span>
                         </label>
                         <input
                             type="text"
-                            placeholder="Recipe Name"
-                            {...register('name', { required: true })}
+                            placeholder="Survey Title"
+                            {...register('title', { required: true })}
+                            required
+                            className="input input-bordered w-full" />
+                    </div>
+                    <div className="form-control w-full my-6">
+                        <label className="label">
+                            <span className="label-text">Description</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Description"
+                            {...register('description', { required: true })}
                             required
                             className="input input-bordered w-full" />
                     </div>
@@ -93,13 +103,8 @@ const AddSurvey = () => {
                         </label>
                         <textarea {...register('recipe')} className="textarea textarea-bordered h-24" placeholder="Bio"></textarea>
                     </div>
-
-                    <div className="form-control w-full my-6">
-                        <input {...register('image', { required: true })} type="file" className="file-input w-full max-w-xs" />
-                    </div>
-
-                    <button className="btn">
-                        Add Item <FaUtensils className="ml-4"></FaUtensils>
+                    <button className="btn btn-sm bg-yellow-400 hover:bg-slate-900 hover:text-white">
+                        Add Survey
                     </button>
                 </form>
             </div>

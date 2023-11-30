@@ -20,6 +20,7 @@ const SurveyList = () => {
                                 <th>Title</th>
                                 <th>Category</th>
                                 <th>Description</th>
+                                <th>Option</th>
                                 <th>Comment</th>
                                 <th>Status</th>
                                 <th>Report</th>
@@ -36,6 +37,7 @@ const SurveyList = () => {
                                     </td>
                                     <td className="">{vote.category}</td>
                                     <td className="">{vote.description}</td>
+                                    <td className="">{vote.option}</td>
                                     <td className="">
                                         {vote.comment ? vote.comment : 'No comment'}
                                     </td>

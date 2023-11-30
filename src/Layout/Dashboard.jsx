@@ -1,4 +1,4 @@
-import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
+import { FaAd, FaBook, FaEnvelope, FaHome, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import { RiSurveyFill } from "react-icons/ri";
 import useAdmin from "../hooks/useAdmin";
@@ -22,9 +22,9 @@ const Dashboard = () => {
                                     Admin Home</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/addItems">
+                                <NavLink to="/dashboard/addVote">
                                     <FaUtensils className="text-white"></FaUtensils>
-                                    Add Items</NavLink>
+                                    Add Survey</NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/votes">
@@ -46,11 +46,6 @@ const Dashboard = () => {
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/surveyList">
-                                        <FaCalendar className="text-white"></FaCalendar>
-                                        Vote History</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/dashboard/cart">
                                         <FaShoppingCart className="text-white"></FaShoppingCart>
                                         My votes ({vote.length})</NavLink>
                                 </li>

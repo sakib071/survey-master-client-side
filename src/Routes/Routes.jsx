@@ -17,6 +17,8 @@ import PrivateRoute from "../providers/PrivateRoute";
 import AdminRoute from "../providers/AdminRoute";
 import UserHome from "../Pages/Dashboard/UserHome/UserHome";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUser";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
+import Review from "../Pages/Dashboard/Review/Review";
 
 export const router = createBrowserRouter([
     {
@@ -60,6 +62,10 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
+                path: 'adminHome',
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+            },
+            {
                 path: 'addVote',
                 element: <AdminRoute><AddSurvey></AddSurvey></AdminRoute>
             },
@@ -74,6 +80,10 @@ export const router = createBrowserRouter([
             {
                 path: 'users',
                 element: <AllUsers></AllUsers>
+            },
+            {
+                path: 'review',
+                element: <Review></Review>
             },
         ]
     },
