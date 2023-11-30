@@ -8,7 +8,7 @@ const SurveyList = () => {
     return (
         <div className="min-h-screen">
             <div>
-                <h3 className="text-3xl mt-1 mb-10 font-semibold">Vote History</h3>
+                {/* <h3 className="text-3xl mt-1 mb-3 font-semibold">Vote History</h3> */}
                 <div className="overflow-x-auto">
                     <table className="table mx-auto text-center">
                         {/* head */}

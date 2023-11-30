@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { FaTrash, FaUsers } from 'react-icons/fa';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 
 const AllUsers = () => {
@@ -47,7 +47,7 @@ const AllUsers = () => {
                 if (res.data.modifiedCount > 0) {
                     refetch();
                     Swal.fire({
-                        title: "Deleted!",
+                        title: "Done!",
                         text: `${user.name} is an admin now`,
                         icon: "success"
                     });
@@ -57,10 +57,9 @@ const AllUsers = () => {
 
     return (
         <div className="mt-5">
-            <div className="flex justify-evenly items-center mb-6">
+            <div className="mb-6">
                 <h3>Total Users: <span className="font-bold">{users.length}</span></h3>
-                {/* <h3>Total Price: <span className="font-bold">${totalPrice}</span> </h3> */}
-                <button className="btn btn-neutral btn-xs px-5 rounded-md">Pay</button>
+
             </div>
             <div className="overflow-x-auto">
                 <table className="table w-full">

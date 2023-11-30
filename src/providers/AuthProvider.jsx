@@ -40,6 +40,7 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photoURL,
+            role: 'User'
         });
     };
 

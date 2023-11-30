@@ -1,12 +1,12 @@
-import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
+import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import { RiSurveyFill } from "react-icons/ri";
-import useCart from "../hooks/useCart";
 import useAdmin from "../hooks/useAdmin";
+import useVotes from "../hooks/useVotes";
 
 
 const Dashboard = () => {
-    const [cart] = useCart();
+    const [vote] = useVotes();
     const [isAdmin] = useAdmin();
 
     return (
@@ -27,14 +27,9 @@ const Dashboard = () => {
                                     Add Items</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/manageItems">
-                                    <FaList className="text-white"></FaList>
-                                    Manage Items</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/bookings">
+                                <NavLink to="/dashboard/votes">
                                     <FaBook className="text-white"></FaBook>
-                                    Manage Bookings</NavLink>
+                                    Manage Votes</NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/users">
@@ -57,7 +52,7 @@ const Dashboard = () => {
                                 <li>
                                     <NavLink to="/dashboard/cart">
                                         <FaShoppingCart className="text-white"></FaShoppingCart>
-                                        My votes ({cart.length})</NavLink>
+                                        My votes ({vote.length})</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/review">

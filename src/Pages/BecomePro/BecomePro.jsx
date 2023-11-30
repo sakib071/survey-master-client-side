@@ -1,72 +1,12 @@
 import { useContext } from "react";
 // import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
-import Swal from 'sweetalert2'
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 
 const BecomePro = () => {
-
     const { user } = useContext(AuthContext);
-    // const navigate = useNavigate();
-    const axiosSecure = useAxiosSecure();
-    // console.log(user.email);
-
-    const handlePro = user => {
-        axiosSecure.patch(`/users/${user._id}`)
-            .then(res => {
-                console.log(res.data);
-                if (res.data.modifiedCount > 0) {
-                    // refetch();
-                    Swal.fire({
-                        title: "Updated!",
-                        text: `${user.name} is an admin now`,
-                        icon: "success"
-                    });
-                }
-            })
-    }
-
-    // const handleVote = event => {
-    //     event.preventDefault();
-
-    //     const email = user?.email;
-    //     const displayName = user?.displayName;
-
-    //     const addPro = {
-    //         email,
-    //         displayName
-    //     };
-    //     console.log(addPro);
-
-    //     fetch('http://localhost:5000/users', {
-    //         method: 'PATCH',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(addPro)
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             if (data.insertedId) {
-    //                 Swal.fire({
-    //                     icon: "success",
-    //                     title: "Subscription successful",
-    //                     showConfirmButton: false,
-    //                     timer: 1500
-    //                 });
-    //                 navigate(location?.state ? location?.state : '/');
-    //             }
-    //         })
-    //         .catch(err => {
-    //             Swal.fire({
-    //                 icon: "error",
-    //                 title: "Oops...",
-    //                 text: "Something went wrong!"
-    //             });
-    //             console.log(err)
-    //         })
-    // }
+    // console.log(user?.role);
 
     return (
         <div className="h-[70vh] pt-28">
@@ -91,7 +31,7 @@ const BecomePro = () => {
                         <div className="flex justify-between text-lg">
                             <div className="">
                                 <label className="label label-text p-0" >Role</label>
-                                <p className="font-bold text-yellow-400">PRO</p>
+                                <p className="font-bold text-yellow-400">{user?.role}</p>
                             </div>
                             <div className="">
                                 <label className="label label-text p-0" >Price</label>
@@ -100,8 +40,9 @@ const BecomePro = () => {
 
                         </div>
                         <div className="form-control">
-                            <button onClick={() => handlePro(user)} className="btn btn-sm w-1/2 mx-auto mt-10 first-letter: bg-yellow-300 text-black uppercase hover:bg-yellow-400 hover-bg-blue-600">Payment</button>
-
+                            <Link to='/payment'>
+                                <button className="btn btn-sm w-1/2 mx-auto mt-10 first-letter: bg-yellow-300 text-black uppercase hover:bg-yellow-400 hover-bg-blue-600">Payment</button>
+                            </Link>
                         </div>
                     </div>
                 </form>
