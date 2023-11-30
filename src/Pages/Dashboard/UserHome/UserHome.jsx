@@ -1,9 +1,21 @@
+import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 
 
-
 const UserHome = () => {
+
     const { user } = useAuth();
+    const [userData, setUserData] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/users?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setUserData(data.role);
+                console.log(data.role);
+            })
+    }, [user]);
+
     return (
         <div>
             <h2 className="text-2xl mt-8">
@@ -33,7 +45,7 @@ const UserHome = () => {
                             <div className="flex justify-between text-lg">
                                 <div className="">
                                     <label className="label label-text p-0" >Role</label>
-                                    <p className="font-bold text-yellow-400">{user?.role}</p>
+                                    <p className="font-bold text-yellow-400">{userData}</p>
                                 </div>
                             </div>
                         </div>
