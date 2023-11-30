@@ -1,4 +1,5 @@
-import { FaAd, FaBook, FaEnvelope, FaHome, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
+import { FaAd, FaEnvelope, FaHome, FaShoppingCart, FaUsers } from "react-icons/fa";
+import { MdHowToVote } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import { RiSurveyFill } from "react-icons/ri";
 import useAdmin from "../hooks/useAdmin";
@@ -23,12 +24,12 @@ const Dashboard = () => {
                             </li>
                             <li>
                                 <NavLink to="/dashboard/addVote">
-                                    <FaUtensils className="text-white"></FaUtensils>
+                                    <RiSurveyFill className="text-white" />
                                     Add Survey</NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/votes">
-                                    <FaBook className="text-white"></FaBook>
+                                    <MdHowToVote className="text-white" />
                                     Manage Votes</NavLink>
                             </li>
                             <li>

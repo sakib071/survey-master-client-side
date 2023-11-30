@@ -6,7 +6,7 @@ const UserHome = () => {
     const { user } = useAuth();
     return (
         <div>
-            <h2 className="text-3xl mt-8">
+            <h2 className="text-2xl mt-8">
                 <span>Hi, Welcome </span>
                 {
                     user?.displayName ? <span className="font-semibold text-yellow-400">{user.displayName}</span> : 'Back'

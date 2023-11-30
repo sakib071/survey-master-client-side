@@ -1,8 +1,8 @@
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
 
-const SurveyCard = ({ item }) => {
-    const { title, description, category, totalVotes, _id, surveyDeadline } = item;
+const SurveyCard = ({ data }) => {
+    const { title, description, category, totalVotes, _id, surveyDeadline } = data;
     const axiosPublic = useAxiosPublic();
 
     const handleDetails = async () => {
