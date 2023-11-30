@@ -5,7 +5,7 @@ const MostVotes = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/surveys')
+        fetch('https://survey-master-server-gold.vercel.app/surveys')
             .then((response) => response.json())
             .then((data) => {
                 const sortedData = data.sort((a, b) => b.totalVotes - a.totalVotes);

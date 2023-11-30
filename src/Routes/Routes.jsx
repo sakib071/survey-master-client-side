@@ -35,8 +35,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/surveyDetails/:_id',
-                element: <SurveyDetails></SurveyDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/surveys/${params._id}`)
+                element: <PrivateRoute><SurveyDetails></SurveyDetails></PrivateRoute>,
+                loader: ({ params }) => fetch(`https://survey-master-server-gold.vercel.app/surveys/${params._id}`)
             },
             {
                 path: '/login',
@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/becomePro',
-                element: <BecomePro></BecomePro>,
+                element: <PrivateRoute><BecomePro></BecomePro></PrivateRoute>,
             },
             {
                 path: 'payment',
