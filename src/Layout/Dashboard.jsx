@@ -28,7 +28,7 @@ const Dashboard = () => {
                                     Add Survey</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/votes">
+                                <NavLink to="/dashboard/surveyList">
                                     <MdHowToVote className="text-white" />
                                     Manage Votes</NavLink>
                             </li>

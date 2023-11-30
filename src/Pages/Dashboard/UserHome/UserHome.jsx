@@ -9,7 +9,7 @@ const UserHome = () => {
             <h2 className="text-2xl mt-8">
                 <span>Hi, Welcome </span>
                 {
-                    user?.displayName ? <span className="font-semibold text-yellow-400">{user.displayName}</span> : 'Back'
+                    user?.displayName ? <span className="font-semibold text-yellow-400">{user?.displayName}</span> : 'Back'
                 }
             </h2>
             <div className="mt-10">
@@ -33,7 +33,7 @@ const UserHome = () => {
                             <div className="flex justify-between text-lg">
                                 <div className="">
                                     <label className="label label-text p-0" >Role</label>
-                                    <p className="font-bold text-yellow-400">PRO</p>
+                                    <p className="font-bold text-yellow-400">{user?.role}</p>
                                 </div>
                             </div>
                         </div>

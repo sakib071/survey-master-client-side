@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Link } from "react-router-dom";
@@ -6,7 +6,16 @@ import { Link } from "react-router-dom";
 
 const BecomePro = () => {
     const { user } = useContext(AuthContext);
-    // console.log(user?.role);
+    const [userData, setUserData] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/users?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setUserData(data.role);
+                console.log(data.role);
+            })
+    }, [user]);
 
     return (
         <div className="h-[70vh] pt-28">
@@ -31,7 +40,7 @@ const BecomePro = () => {
                         <div className="flex justify-between text-lg">
                             <div className="">
                                 <label className="label label-text p-0" >Role</label>
-                                <p className="font-bold text-yellow-400">{user?.role}</p>
+                                <p className="font-bold text-yellow-400">{userData}</p>
                             </div>
                             <div className="">
                                 <label className="label label-text p-0" >Price</label>
