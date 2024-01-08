@@ -5,7 +5,7 @@ const Surveys = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch('https://survey-master-server-gold.vercel.app/surveys')
+        fetch('http://localhost:5000/surveys')
             .then((response) => response.json())
             .then((data) => setData(data))
             .catch((error) => console.error("Error fetching survey data:", error));

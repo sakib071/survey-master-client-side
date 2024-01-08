@@ -14,7 +14,7 @@ const Testimonials = () => {
     const [testimonials, setTestimonials] = useState([]);
 
     useEffect(() => {
-        fetch('https://survey-master-server-gold.vercel.app/testimonials')
+        fetch('http://localhost:5000/testimonials')
             .then(res => res.json())
             .then(data => setTestimonials(data))
     }, [])
@@ -25,7 +25,7 @@ const Testimonials = () => {
                 {
                     testimonials.map(review => <SwiperSlide
                         key={review._id}>
-                        <div className="text-center w-1/2 mx-auto p-5 space-y-3">
+                        <div className="text-center lg:w-1/2 mx-auto p-5 space-y-3">
                             <Rating
                                 className="mx-auto"
                                 style={{ maxWidth: 120 }}
@@ -33,8 +33,8 @@ const Testimonials = () => {
                                 readOnly
                             />
                             <p>{review.details}</p>
-                            <h3 className="text-3xl text-black"> {review.name}</h3>
-                            <h3 className="text-md text-yellow-500 badge badge-outline mx-auto py-4 px-2"> {review.role}</h3>
+                            <h3 className="text-xl lg:text-3xl text-black"> {review.name}</h3>
+                            <h3 className="lg:text-md text-yellow-500 badge badge-outline mx-auto lg:py-4 lg:px-2"> {review.role}</h3>
                             <p className="text-sm text-black"> {review.testimonial}</p>
                         </div>
                     </SwiperSlide>)

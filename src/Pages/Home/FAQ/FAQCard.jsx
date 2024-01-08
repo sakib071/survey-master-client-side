@@ -5,11 +5,11 @@ const FAQCard = ({ data, index }) => {
     return (
         <div className="collapse collapse-arrow">
             <input type="radio" name="my-accordion-1" id={`accordion-${index}`} />
-            <div className="collapse-title text-xl font-medium">
+            <div className="collapse-title text-md lg:text-xl font-medium">
                 {question}
             </div>
-            <div className="collapse-content">
-                <p>{answer}</p>
+            <div className="collapse-content text-justify">
+                <p className="px-5">{answer}</p>
             </div>
         </div>
     );

@@ -1,14 +1,17 @@
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+// import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const MostVotedCard = ({ data }) => {
+    const { user } = useContext(AuthContext);
     const { title, description, category, totalVotes, _id, surveyDeadline } = data;
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure()
 
     const handleDetails = async () => {
         try {
-            // Fetch the details of the specific survey
-            const response = await axiosPublic.get(`/surveys/${_id}`);
+            const response = await axiosSecure.get(`/surveys/${_id}`);
             console.log(response.data);
         } catch (error) {
             console.error("Error fetching survey data:", error);
@@ -17,7 +20,7 @@ const MostVotedCard = ({ data }) => {
 
     return (
         <div className="card bg-base-100 mx-auto hover:shadow-md transition-all ease-in-out border-yellow-300 border-2">
-            <div className="card-body w-96 h-52">
+            <div className="card-body lg:w-96 w-80 h-52">
                 <div className="flex justify-between">
                     <h2 className="card-title">{title}</h2>
                     <div className="badge badge-outline border-yellow-300 border-2 py-2 px-4 font-semibold">{category}</div>
@@ -28,7 +31,7 @@ const MostVotedCard = ({ data }) => {
                     <div className="text-sm border-0 font-semibold">Deadline: {surveyDeadline}</div>
                 </div>
                 <div className="card-actions justify-end">
-                    <Link to={`/surveyDetails/${_id}`}>
+                    <Link to={user ? `/surveyDetails/${_id}` : '/login'}>
                         <button onClick={handleDetails} className="btn btn-sm btn-outline flex mx-auto">Details</button>
                     </Link>
                 </div>
