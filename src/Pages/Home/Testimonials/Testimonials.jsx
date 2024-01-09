@@ -14,13 +14,13 @@ const Testimonials = () => {
     const [testimonials, setTestimonials] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/testimonials')
+        fetch('https://survey-master-server-gold.vercel.app/testimonials')
             .then(res => res.json())
             .then(data => setTestimonials(data))
     }, [])
 
     return (
-        <section className="my-20">
+        <section className="my-20 max-w-6xl mx-auto">
             <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
                 {
                     testimonials.map(review => <SwiperSlide
@@ -39,6 +39,8 @@ const Testimonials = () => {
                         </div>
                     </SwiperSlide>)
                 }
+                <div className="swiper-button-next" style={{ color: 'yellow', fontSize: '24px' }}></div>
+                <div className="swiper-button-prev" style={{ color: 'blue', fontSize: '24px' }}></div>
             </Swiper>
         </section>
     );

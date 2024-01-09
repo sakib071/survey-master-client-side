@@ -62,7 +62,7 @@ const SurveyDetails = () => {
         };
         console.log(addVote);
 
-        fetch('http://localhost:5000/votes', {
+        fetch('https://survey-master-server-gold.vercel.app/votes', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
