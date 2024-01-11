@@ -46,54 +46,52 @@ const SignUp = () => {
             });
     };
 
-    // console.log(watch("example"));
-
     return (
-        <div className="pt-16 min-h-screen">
-            <div className="hero-content flex-col">
-                <div className="text-center lg:text-left">
-                    <h1 className="text-3xl font-bold">Sign  Up now!</h1>
-                </div>
-                <div className="card shrink-0 w-full max-w-sm">
-                    <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Name</span>
-                            </label>
-                            <input type="text" name="name" {...register("name", { required: true })} placeholder="Name" className="input input-bordered" />
-                            {errors.name && <span className="text-red-600 mt-1 text-xs">Name is required</span>}
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Photo URL</span>
-                            </label>
-                            <input type="text" {...register("photoURL", { required: true })} placeholder="Photo URL" className="input input-bordered" />
-                            {errors.photoURL && <span className="text-red-600 mt-1 text-xs">Photo URL is required</span>}
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input type="email"  {...register("email", { required: true })} placeholder="email" className="input input-bordered" />
-                            {errors.email && <span className="text-red-600 mt-1 text-xs">Email is required</span>}
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Password</span>
-                            </label>
-                            <input type="password" {...register("password", { required: true, minLength: 6, maxLength: 20 })} placeholder="password" className="input input-bordered" required />
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
-                        </div>
-                        <div className="form-control mt-6">
-                            <input className="btn bg-yellow-300 hover:bg-yellow-400 font-bold" type="submit" value="Sign up" />
-                        </div>
-                        <SocialLogin></SocialLogin>
-                        <p className='text-sm mt-6 mx-auto text-black'><Link to="/login" className='hover:underline'>Already have an account? </Link></p>
-                    </form>
 
-                </div>
+        <div className="pt-32 mx-auto flex flex-col justify-center items-center">
+            <div className="text-center">
+                <h1 className="text-3xl font-bold">Create an account</h1>
+            </div>
+            <div className="card shrink-0 w-full max-w-sm">
+                <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Name</span>
+                        </label>
+                        <input type="text" name="name" {...register("name", { required: true })} placeholder="Name" className="input input-bordered" />
+                        {errors.name && <span className="text-red-600 mt-1 text-xs">Name is required</span>}
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Photo URL</span>
+                        </label>
+                        <input type="text" {...register("photoURL", { required: true })} placeholder="Photo URL" className="input input-bordered" />
+                        {errors.photoURL && <span className="text-red-600 mt-1 text-xs">Photo URL is required</span>}
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Email</span>
+                        </label>
+                        <input type="email"  {...register("email", { required: true })} placeholder="email" className="input input-bordered" />
+                        {errors.email && <span className="text-red-600 mt-1 text-xs">Email is required</span>}
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Password</span>
+                        </label>
+                        <input type="password" {...register("password", { required: true, minLength: 6, maxLength: 20 })} placeholder="password" className="input input-bordered" required />
+                        <label className="label">
+                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                        </label>
+                    </div>
+                    <div className="form-control mt-6">
+                        <input className="btn bg-yellow-300 hover:bg-yellow-400 font-bold" type="submit" value="Sign up" />
+                    </div>
+                    <div className="divider">or continue with</div>
+                    <SocialLogin></SocialLogin>
+                    <p className='text-sm mt-6 mx-auto text-black'><Link to="/login" className='hover:underline'>Already have an account? </Link></p>
+                </form>
+
             </div>
         </div>
     );
